@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Timers;
 
 namespace PuzzleLibrary.Domain.Model
 {
@@ -7,6 +8,8 @@ namespace PuzzleLibrary.Domain.Model
     {
         private readonly int[] _numbers;
         private readonly Random _random;
+        public  int aTimer;
+
         public int PlayCount { get; private set; }
         public bool IsSolved => Enumerable.Range(0, _numbers.Length - 1)
                                           .All(i => _numbers[i] == i + 1);
@@ -39,9 +42,12 @@ namespace PuzzleLibrary.Domain.Model
 
         public bool Play(int index)
         {
+            SetTimer();
+            //GameTimer();
             var blankNeighbourIndex = GetBlankNeighbourIndex(index);
             if (blankNeighbourIndex == null) return false;
             Swap(index, blankNeighbourIndex.Value);
+            //DateTime Starttimer = DateTime.Now;
             PlayCount++;
             return true;
         }
@@ -75,6 +81,26 @@ namespace PuzzleLibrary.Domain.Model
             _numbers[n] = _numbers[k];
             _numbers[k] = temp;
         }
+
+        private DateTime GameTimer()
+        {
+            return DateTime.Now;
+          //  var _GameTime =DateTime.Now - Starttime;
+        }
+        private  void SetTimer()
+        {
+            // Create a timer with a one second interval.
+            aTimer = 0;
+            // Hook up the Elapsed event for the timer. 
+            //aTimer.Elapsed += OnTimedEvent;
+            //aTimer.AutoReset = true;
+            //aTimer.Enabled = true;
+        }
+        //private static void OnTimedEvent(Object source, ElapsedEventArgs e)
+        //{
+        //    Console.WriteLine("The Elapsed event was raised at {0:HH:mm:ss.fff}",
+        //        e.SignalTime);
+        //}
 
     }
 }

@@ -5,12 +5,24 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <style>
 
+        #SetTimer {
+            width: 200px;
+            height: 60px;
+            background-color: cyan;
+            border: solid black 5px;
+            margin: 10px;
+            margin-left: 350px;
+            font-size: 320%;
+            text-align: center;
+            font-weight: bold;
+            font-family: helvetica;
+        }
         div.square {
-            color: #00ff7f;
+            color: hotpink;
             background-color: black;
             padding: 10px;
             margin: 10px;
-            border: solid black 5px;
+            border: solid hotpink 5px;
             border-radius: 3px;
             width: 60px;
             height: 60px;
@@ -29,16 +41,26 @@
 <body>
     <div id="game"></div>
     <button onclick="startGame()">Start</button>
+    <div id="SetTimer"></div>
 
     <script>
         let gameModel;
+      //  let GameTimer =  PuzzleLibrary.Domain.Model.GameModel.SetTimer();
 
         startGame();
+        setInterval(setTimer,1000);
         function show() {
             document.getElementById('game').innerHTML =
                 gameModel.numbers.map((n, i) => `
                         <div class="square ${i % 3 === 0 ? 'first' : ''}" onclick="play(${i})">${n}</div>
                     `).join('');
+           
+        }
+
+        function setTimer() {
+            
+        document.getElementById('SetTimer').innerHTML = `${gameModel.gameTimer}`;
+        gameModel.gameTimer++;
         }
 
         async function startGame() {

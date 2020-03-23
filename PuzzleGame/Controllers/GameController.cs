@@ -41,11 +41,12 @@ namespace PuzzleGame.Controllers
             var game = await _gameService.Play(play.Index, guid);
             return MapToViewModel(game);
         }
+        //[HttpPut]
 
         private static GameViewModel MapToViewModel(GameModel game)
         {
             // Finnes ferdige pakker for dette, f.eks. AutoMapper (NuGet)
-            return new GameViewModel(game.Id.ToString(), game.PlayCount, game.IsSolved, game.Numbers);
+            return new GameViewModel(game.Id.ToString(), game.PlayCount, game.IsSolved, game.Numbers, game.aTimer);
         }
     }
 }

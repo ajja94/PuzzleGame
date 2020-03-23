@@ -6,12 +6,42 @@ using System.Threading.Tasks;
 using DataAccess.Model;
 using PuzzleLibrary.Domain.Service;
 using DbGameModel = DataAccess.Model.GameModel;
+using GameModel = PuzzleLibrary.Domain.Model.GameModel;
 
 namespace DataAccess.Repository
 {
     //public class GameModelRepository : IGameModelRepository
     //{
-      
+    //    public async Task<int> Create(GameModel gameModel)
+    //    {
+    //        return 2;
+    //    }
+
+    //    public async Task<GameModel> Read(Guid id)
+    //    {
+    //        var result = await conn.QueryAsync<DbGameModel>(select, new { Id = id });
+    //               var gameModel = result.SingleOrDefault();
+    //               return MapToDomain(gameModel);
+    //    }
+
+    //    public async Task<int> Update(GameModel gameModel)
+    //    {
+    //        return 1;
+    //    }
+
+
+    //    private static GameModel MapToDomain(DbGameModel gameModel)
+    //    {
+    //        var numbers = gameModel.Numbers.ToCharArray().Select(c => c - '0').ToArray();
+    //        return new GameModel(gameModel.Id, gameModel.PlayCount, numbers);
+    //    }
+
+    //    private static DbGameModel MapToDb(GameModel gameModel)
+    //    {
+    //        var numbers = new string(gameModel.Numbers).Replace(' ', '0');
+    //        return new DbGameModel(gameModel.Id, gameModel.PlayCount, numbers);
+    //    }
+    //}
     //    private readonly string _connectionString;
 
     //    /*
@@ -57,16 +87,6 @@ namespace DataAccess.Repository
     //        //return await conn.ExecuteAsync(insert, dbGameModel);
     //    }
 
-    //    //private static GameModel MapToDomain(DbGameModel gameModel)
-    //    //{
-    //    //    var numbers = gameModel.Numbers.ToCharArray().Select(c => c - '0').ToArray();
-    //    //    return new GameModel(gameModel.Id, gameModel.PlayCount, numbers);
-    //    //}
-
-    //    //private static DbGameModel MapToDb(GameModel gameModel)
-    //    //{
-    //    //    var numbers = new string(gameModel.Numbers).Replace(' ', '0');
-    //    //    return new DbGameModel(gameModel.Id, gameModel.PlayCount, numbers);
-    //    //}
+   
     //}
 }
