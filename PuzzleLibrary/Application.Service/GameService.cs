@@ -14,10 +14,11 @@ namespace PuzzleLibrary.Application.Service
             _repository = repository;
         }
 
-        public async Task<GameModel> Play(int index, Guid gameId)
+        public async Task<GameModel> Play(int index, Guid gameId, int gameTimer)
         {
             var gameModel = await _repository.Read(gameId);
             var hasPlayed = gameModel.Play(index);
+            gameModel.aTimer = gameTimer;
             await _repository.Update(gameModel);
             return gameModel;
         }

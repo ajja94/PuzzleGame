@@ -17,6 +17,7 @@
             font-weight: bold;
             font-family: helvetica;
         }
+
         div.square {
             color: hotpink;
             background-color: black;
@@ -45,23 +46,32 @@
 
     <script>
         let gameModel;
-      //  let GameTimer =  PuzzleLibrary.Domain.Model.GameModel.SetTimer();
+        //  let GameTimer =  PuzzleLibrary.Domain.Model.GameModel.SetTimer();
+
 
         startGame();
-        setInterval(setTimer,1000);
+        setInterval(setTimer, 1000);
+        // setTimer(1000);
         function show() {
             document.getElementById('game').innerHTML =
                 gameModel.numbers.map((n, i) => `
-                        <div class="square ${i % 3 === 0 ? 'first' : ''}" onclick="play(${i})">${n}</div>
-                    `).join('');
-           
+                                <div class="square ${i % 3 === 0 ? 'first' : ''}" onclick="play(${i})">${n}</div>
+                            `).join('');
+
         }
 
         function setTimer() {
-            
-        document.getElementById('SetTimer').innerHTML = `${gameModel.gameTimer}`;
-        gameModel.gameTimer++;
-        }
+            var seconds = gameModel.gameTimer;
+            var minutes = 0;
+            while(seconds > 59){
+                seconds -= 60;
+                minutes++;
+            }
+            if(seconds <= 9) seconds = "0" + seconds;
+            if(minutes <= 9) minutes = "0" + minutes;
+            document.getElementById('SetTimer').innerHTML = `${minutes}:${seconds}`;
+            gameModel.gameTimer++;
+        } //String.Format("{00}",minutes)
 
         async function startGame() {
             let response = await axios.get('/api/game');
@@ -78,7 +88,7 @@
         }
 
         async function play(index) {
-            const paramObj = { "index": index, "gameId": gameModel.id };
+            const paramObj = { "index": index, "gameId": gameModel.id, "gameTimer": gameModel.gameTimer };
             console.log(paramObj);
             let response = await axios.put('/api/game', paramObj);
             gameModel = response.data;

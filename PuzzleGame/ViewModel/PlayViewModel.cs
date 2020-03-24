@@ -9,5 +9,6 @@ namespace PuzzleGame.ViewModel
     {
         public int Index { get; set; }
         public string GameId { get; set; }
+        public int GameTimer { get; set; }
     }
 }

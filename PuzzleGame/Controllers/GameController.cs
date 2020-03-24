@@ -38,7 +38,7 @@ namespace PuzzleGame.Controllers
         public async Task<GameViewModel> Play(PlayViewModel play)
         {
             var guid = new Guid(play.GameId);
-            var game = await _gameService.Play(play.Index, guid);
+            var game = await _gameService.Play(play.Index, guid, play.GameTimer);
             return MapToViewModel(game);
         }
         //[HttpPut]
